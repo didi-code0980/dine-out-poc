@@ -53,9 +53,11 @@ export default function FavoritePage() {
           <div className="space-y-3">
             {savedRestaurants.map((restaurant, idx) => (
               <Link key={idx} href={`/restaurant/${restaurant.id}`}>
-                <Card className="border-white/10 bg-white/5 backdrop-blur hover:bg-white/10 transition-colors cursor-pointer">
+                <Card className="py-0 border-white/10 bg-white/5 backdrop-blur hover:bg-white/10 transition-colors cursor-pointer">
                   <CardContent className="p-4 flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-lg bg-white/10 flex-shrink-0" />
+                    <div className="w-20 h-16 rounded-lg bg-white/10 flex-shrink-0">
+                      <img className="w-full h-full object-cover rounded-lg" src={`../${restaurant.image_url}`} alt={restaurant.name} />
+                    </div>
                     <div className="flex-1">
                       <h4 className="font-semibold text-white">{restaurant.name}</h4>
                       <p className="text-sm text-white/60">{restaurant.cuisine}</p>

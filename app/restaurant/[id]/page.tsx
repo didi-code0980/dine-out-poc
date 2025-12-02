@@ -4,13 +4,49 @@ import { useParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, MapPin, Phone, Star, Clock, DollarSign, CheckCircle2 } from "lucide-react"
+import { ArrowLeft, MapPin, Phone, Star, Clock, DollarSign, CheckCircle2, Heart } from "lucide-react"
 import { mockRestaurants } from "@/lib/mock-data"
+import { useState, useEffect } from "react"
 
 export default function RestaurantDetailPage() {
   const params = useParams()
   const router = useRouter()
   const restaurant = mockRestaurants.find((r) => r.id === params.id)
+
+  const [isFavorited, setIsFavorited] = useState(false)
+
+  useEffect(() => {
+    if (!restaurant) return
+    const saved = localStorage.getItem("savedRestaurants")
+    if (saved) {
+      const savedRestaurants = JSON.parse(saved)
+      const isAlreadySaved = savedRestaurants.some((r: any) => r.id === restaurant.id)
+      setIsFavorited(isAlreadySaved)
+    }
+  }, [restaurant])
+
+  const toggleFavorite = () => {
+    if (!restaurant) return
+
+    const saved = localStorage.getItem("savedRestaurants")
+    let savedRestaurants = saved ? JSON.parse(saved) : []
+
+    if (isFavorited) {
+      savedRestaurants = savedRestaurants.filter((r: any) => r.id !== restaurant.id)
+    } else {
+      savedRestaurants.push({
+        id: restaurant.id,
+        name: restaurant.name,
+        cuisine: restaurant.cuisine_type,
+        rating: restaurant.star_rating,
+        price: restaurant.price_tier,
+        image_url: restaurant.image_url,
+      })
+    }
+
+    localStorage.setItem("savedRestaurants", JSON.stringify(savedRestaurants))
+    setIsFavorited(!isFavorited)
+  }
 
   if (!restaurant) {
     return (
@@ -61,7 +97,16 @@ export default function RestaurantDetailPage() {
             Back
           </Button>
           <h1 className="text-lg font-semibold text-white">Restaurant Details</h1>
-          <div className="w-0" />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={toggleFavorite}
+            className="text-white/70 hover:text-white hover:bg-white/10"
+          >
+            <Heart
+              className={`w-5 h-5 ${isFavorited ? "fill-[oklch(0.70_0.15_85)] text-[oklch(0.70_0.15_85)]" : ""}`}
+            />
+          </Button>
         </div>
       </header>
 
