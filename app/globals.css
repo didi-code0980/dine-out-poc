@@ -163,3 +163,15 @@
     }
   }
 }
+
+.home-load-div{
+  height: 120px;
+  place-items: center;
+}
+.home-load-menu{
+  position: relative;
+}
+.home-load-spiner{
+  position: relative;
+  top: -150px;
+}

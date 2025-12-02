@@ -69,7 +69,7 @@ export default function RestaurantDetailPage() {
         {/* Hero Image */}
         <div className="w-full h-64 rounded-xl overflow-hidden bg-white/10">
           <img
-            src={`/.jpg?key=5gk9q&height=256&width=768&query=${encodeURIComponent(restaurant.name + " restaurant interior")}`}
+            src={`../${restaurant.image_url}`}
             alt={restaurant.name}
             className="w-full h-full object-cover"
           />

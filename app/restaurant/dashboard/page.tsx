@@ -96,19 +96,21 @@ export default function RestaurantDashboardPage() {
               <div>
                 <div className="flex items-center gap-2">
                   <h1 className="text-xl font-bold text-white">{restaurant.name}</h1>
-                  {restaurant.is_verified && <span className="text-blue-400 text-lg">✓</span>}
+                  {restaurant.is_verified && <span className="text-blue-400 text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#009b02" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-badge-check-icon lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+                  </span>}
                 </div>
                 <p className="text-sm text-white/60">{restaurant.cuisine_type}</p>
               </div>
             </div>
-            <Button
+            {/* <Button
               variant="ghost"
               size="sm"
               className="text-white/70 hover:text-white hover:bg-white/10"
               onClick={() => router.push("/home")}
             >
               Exit Dashboard
-            </Button>
+            </Button> */}
           </div>
         </div>
       </header>
@@ -142,17 +144,22 @@ export default function RestaurantDashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <button
+                    onClick={() => router.push("/restaurant/reviews")}
+                    className="text-center p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >                    <p className="text-2xl font-bold text-[oklch(0.70_0.15_85)]">{restaurant.google_rating}⭐</p>
+                    <p className="text-sm text-white/60 mt-1">Avg Star Rating</p>
+                  </button>
+                  <button
+                    onClick={() => router.push("/restaurant/reviews")}
+                    className="text-center p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  >
+                    <p className="text-2xl font-bold text-[oklch(0.70_0.15_85)]">{restaurant.review_count}</p>
+                    <p className="text-sm text-white/60 mt-1">Total Reviews</p>
+                  </button>
                   <div className="text-center p-4 rounded-lg bg-white/5">
                     <p className="text-2xl font-bold text-[oklch(0.70_0.15_85)]">{restaurant.ranking_position}</p>
                     <p className="text-sm text-white/60 mt-1">Ranking Position</p>
-                  </div>
-                  <div className="text-center p-4 rounded-lg bg-white/5">
-                    <p className="text-2xl font-bold text-[oklch(0.70_0.15_85)]">{restaurant.google_rating}⭐</p>
-                    <p className="text-sm text-white/60 mt-1">Avg Star Rating</p>
-                  </div>
-                  <div className="text-center p-4 rounded-lg bg-white/5">
-                    <p className="text-2xl font-bold text-[oklch(0.70_0.15_85)]">{restaurant.review_count}</p>
-                    <p className="text-sm text-white/60 mt-1">Total Reviews</p>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-white/5">
                     <p className="text-2xl font-bold text-[oklch(0.70_0.15_85)]">{restaurant.promotion_status}</p>
@@ -327,6 +334,14 @@ export default function RestaurantDashboardPage() {
             )}
           </TabsContent>
         </Tabs>
+          <Button
+            onClick={() => router.push("/")}
+            variant="outline"
+            className="w-full border-red-600 text-red-600 hover:bg-red-600/10 hover:text-red-600 bg-transparent"
+          >
+            Logout
+          </Button>
+
       </main>
     </div>
   )

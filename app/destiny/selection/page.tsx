@@ -33,7 +33,7 @@ export default function DestinySelectionPage() {
       setSpinResult(randomCard)
       setTimeout(() => {
         router.push(`/destiny/reveal?mode=${mode}&card=${randomCard}`)
-      }, 1000)
+      }, 200)
     }, 3000)
   }
 
@@ -134,12 +134,14 @@ export default function DestinySelectionPage() {
         return (
           <div className="space-y-8">
             <motion.div
-              animate={isSpinning ? { rotate: 360 * 10 } : {}}
-              transition={{ duration: 3, ease: "easeOut" }}
+              animate={isSpinning && !spinResult ? { rotate: 360 * 10 } : {}}
+              transition={{ duration: 3 }}
               className="w-64 h-64 mx-auto relative"
             >
-              <div className="absolute inset-0 rounded-full border-4 border-[oklch(0.70_0.15_85)] bg-white/5 flex items-center justify-center">
-                <Sparkles className="w-16 h-16 text-[oklch(0.70_0.15_85)]" />
+              <div className="absolute inset-0 rounded-full border-0 border-[oklch(0.70_0.15_85)] bg-white/5 flex items-center justify-center">
+                {/* <Sparkles className="w-16 h-16 text-[oklch(0.70_0.15_85)]" /> */}
+                <img src="/bottle.svg" alt="" />
+
               </div>
               <motion.div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 w-0 h-0 border-l-8 border-r-8 border-t-12 border-l-transparent border-r-transparent border-t-[oklch(0.70_0.15_85)]" />
             </motion.div>
