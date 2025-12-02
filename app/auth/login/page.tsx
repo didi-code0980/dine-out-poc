@@ -180,7 +180,7 @@ export default function LoginPage() {
                     />
                   </svg>
                   <div className="text-left">
-                    <div className="font-bold">Sign in with Google Business Profile</div>
+                    <div className="font-bold">Sign in with Google  </div>
                     <div className="text-xs text-gray-600">Verify restaurant ownership</div>
                   </div>
                 </button>

@@ -238,6 +238,13 @@ export default function RestaurantDashboardPage() {
                 </Button>
               </CardContent>
             </Card>
+                      <Button
+            onClick={() => router.push("/")}
+            variant="outline"
+            className="w-full border-red-600 text-red-600 hover:bg-red-600/10 hover:text-red-600 bg-transparent"
+          >
+            Logout
+          </Button>
           </TabsContent>
 
           {/* Newsfeed Tab */}
@@ -334,13 +341,7 @@ export default function RestaurantDashboardPage() {
             )}
           </TabsContent>
         </Tabs>
-          <Button
-            onClick={() => router.push("/")}
-            variant="outline"
-            className="w-full border-red-600 text-red-600 hover:bg-red-600/10 hover:text-red-600 bg-transparent"
-          >
-            Logout
-          </Button>
+
 
       </main>
     </div>
