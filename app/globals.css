@@ -175,3 +175,17 @@
   position: relative;
   top: -150px;
 }
+
+.bg-transparent-intro{
+  background: #0D1527;
+  background: linear-gradient(0deg, #0d1527 20%, #fff0 45%);
+}
+
+#d1-intro{
+  display: none;
+  transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+
+#d2-intro{
+  transition: opacity 1s ease-out, visibility 1s ease-out;
+}
